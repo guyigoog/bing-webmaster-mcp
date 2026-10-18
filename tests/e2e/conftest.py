@@ -79,6 +79,7 @@ def implementation(request):
 def mcp_client(implementation, mock_server):
     _, binary_path = implementation
     env = dict(os.environ)
+    env.pop("BING_AI_PERFORMANCE_DIR", None)
     env["BING_WEBMASTER_API_KEY"] = "dummy-e2e-key"
     env["BING_INDEXNOW_KEY"] = "dummy-indexnow-key"
     env["BING_WEBMASTER_API_BASE_URL"] = mock_server.webmaster_base_url

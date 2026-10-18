@@ -36,6 +36,7 @@ theme:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
+  - AI Performance CSV (Go fork): ai-performance.md
   - MCP Tools:
     - Overview: tools/index.md
     - Sites:

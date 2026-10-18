@@ -1,0 +1,2 @@
+# Preserve the observed UTF-8 BOM / CRLF CSV fixtures on every platform.
+go/internal/aiperformance/testdata/*.csv -text whitespace=cr-at-eol
