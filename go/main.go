@@ -22,6 +22,7 @@ import (
 	"syscall"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
+	"github.com/ncosentino/bing-webmaster-mcp/go/internal/aiperformance"
 	"github.com/ncosentino/bing-webmaster-mcp/go/internal/bingwebmaster"
 	"github.com/ncosentino/bing-webmaster-mcp/go/internal/config"
 	"github.com/ncosentino/bing-webmaster-mcp/go/internal/indexnow"
@@ -37,6 +38,7 @@ var listSitesInputSchema = json.RawMessage(`{"type":"object","properties":{},"re
 func main() {
 	apiKey := flag.String("api-key", "", "Bing Webmaster API key")
 	indexNowKey := flag.String("indexnow-key", "", "Optional default IndexNow key")
+	aiPerformanceDir := flag.String("ai-performance-dir", os.Getenv("BING_AI_PERFORMANCE_DIR"), "Enable five local AI Performance tools using this dedicated storage directory")
 	transport := flag.String("transport", "stdio", "Transport mode: stdio or http")
 	listenAddress := flag.String(
 		"listen-address",
@@ -75,6 +77,9 @@ func main() {
 	indexNowClient := indexnow.NewClient(cfg.IndexNowKey)
 
 	srv := newServer(bingClient, indexNowClient)
+	if *aiPerformanceDir != "" {
+		registerAIPerformanceTools(srv, aiperformance.NewStore(*aiPerformanceDir))
+	}
 
 	switch *transport {
 	case "http":

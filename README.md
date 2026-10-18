@@ -11,6 +11,13 @@
 
 Expose real Bing search and indexing data directly to AI assistants like Claude, GitHub Copilot, and Cursor via the [Model Context Protocol (MCP)](https://modelcontextprotocol.io). Ask your AI to check crawl issues, submit URLs for indexing, inspect a page's index status, or pull query and keyword performance -- all grounded in real Bing Webmaster Tools data for your verified sites.
 
+**This fork adds optional AI Performance CSV analytics to the Go server.** Build
+from this fork and set `BING_AI_PERFORMANCE_DIR` (or `--ai-performance-dir`) to
+enable five additional tools for importing verified page/query export formats,
+citation summaries, rankings and period comparisons. The original 55 tools are
+unchanged. See [AI Performance setup, formats and limitations](docs/ai-performance.md).
+Upstream release binaries linked above do not contain this extension.
+
 ---
 
 ## Why This Exists
